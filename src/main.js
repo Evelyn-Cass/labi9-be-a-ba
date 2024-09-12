@@ -58,6 +58,18 @@ document.getElementById('form').addEventListener('submit', async function (event
             document.getElementById('second-letter').style = "background-color: transparent";
             document.getElementById('third-letter').style = "background-color: transparent";
 
+
+            let params = {
+                particleCount: 500, // Quantidade de confetes
+                spread: 200, // O quanto eles se espalham
+                startVelocity: 70, // Velocidade inicial
+                origin: { x: 0.5, y: 1 }, // Posição inicial na tela
+                angle: 90 // Ângulo em que os confetes serão lançados
+
+            };
+
+            confetti(params);
+
             break;
         case 1:
             alertElem.style = "visibility: visible";
@@ -101,5 +113,5 @@ inputElem.addEventListener('input', function () {
         document.getElementById('third-letter').style = "background-color: transparent";
     }
 
-}
-)
+});
+
