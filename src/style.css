@@ -38,13 +38,11 @@ main {
     justify-content: center;
 }
 
-.contStreak{
-
-    display: flex;
-    
-}
 
 .streak{
+    position:  fixed;
+    right: 0;
+    top : 2rem;
     margin: 1rem 4rem 3rem auto;
     font-size: 2em;
     border: 2px solid #ef4444;
@@ -112,4 +110,10 @@ main {
 .footer p{
     margin: 1rem auto;
     width: 80%;
+}
+
+@media (max-width: 768px) {
+    .streak{
+        position: relative;
+    }
 }

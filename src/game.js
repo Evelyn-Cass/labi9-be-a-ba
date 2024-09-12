@@ -21,22 +21,25 @@ export const game = {
     },
     validateWord: async function (word) {
 
+
+    
+        const rawData = await fetch(`https://api.dicionario-aberto.net/word/${word}`);
+        const data = await rawData.json();
+
+        if (!data.length) {
+            return 3;
+        }
+
+        if (this.inputedWords.includes(word)) {
+            return 2;
+        }
+
         word = word.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
         for (let i = 0; i < this.letters.length; i++) {
             if (!word.includes(this.letters[i])) {
                 // this.error = true;
                 return 1;
             }
-        }
-        if (this.inputedWords.includes(word)) {
-            return 2;
-        }
-
-        const rawData = await fetch(`https://api.dicionario-aberto.net/word/${word}`);
-        const data = await rawData.json();
-
-        if (!data.length) {
-            return 3;
         }
 
         this.inputedWords.push(word)
