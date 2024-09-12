@@ -53,7 +53,7 @@ document.getElementById('form').addEventListener('submit', async function (event
             alertElem.innerHTML = "A palavra é valida!"
 
             inputElem.value = "";
-            
+
             document.getElementById('first-letter').style = "background-color: transparent";
             document.getElementById('second-letter').style = "background-color: transparent";
             document.getElementById('third-letter').style = "background-color: transparent";
@@ -76,26 +76,30 @@ document.getElementById('form').addEventListener('submit', async function (event
 });
 
 inputElem.addEventListener('input', function () {
-    let isLetterFound = game.validatLetter(inputElem.value.toLowerCase());
+    let word = inputElem.value.toLowerCase();
+
+    word = word.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+
+    const isLetterFound = game.validatLetter(word);
 
     if (isLetterFound[0]) {
         document.getElementById('first-letter').style = "background-color: green";
-    }    
-    else{
+    }
+    else {
         document.getElementById('first-letter').style = "background-color: transparent";
     }
     if (isLetterFound[1]) {
         document.getElementById('second-letter').style = "background-color: green";
-    }  
-    else{
+    }
+    else {
         document.getElementById('second-letter').style = "background-color: transparent";
     }
     if (isLetterFound[2]) {
         document.getElementById('third-letter').style = "background-color: green";
-    }  
-    else{
+    }
+    else {
         document.getElementById('third-letter').style = "background-color: transparent";
     }
-    
+
 }
 )

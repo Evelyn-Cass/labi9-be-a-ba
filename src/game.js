@@ -20,6 +20,8 @@ export const game = {
         this.streak = 0;
     },
     validateWord: async function (word) {
+
+        word = word.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
         for (let i = 0; i < this.letters.length; i++) {
             if (!word.includes(this.letters[i])) {
                 // this.error = true;
