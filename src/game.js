@@ -10,7 +10,7 @@ export const game = {
         this.letters = new Array(3).fill().map(function (letter) {
             const randomIndex = Math.floor(Math.random() * alphabet.length);
             const result = alphabet[randomIndex];
-            alphabet = alphabet.replace(result, "");
+            alphabet = alphabet.replaceAll(result, "");
             return result;
         });
 
@@ -41,10 +41,25 @@ export const game = {
         this.streak++;
         return 0;
 
+    },
+
+    validatLetter: function (word) {
+
+        let isLetterFound = []
+        if (word.includes(this.letters[0])) {
+            isLetterFound[0] = true;
+        }
+        if (word.includes(this.letters[1])) {
+            isLetterFound[1] = true;
+        }
+        if (word.includes(this.letters[2])) {
+            isLetterFound[2] = true;
+        }
+        return isLetterFound;
+
     }
+
 }
-
-
 
 
 

@@ -21,6 +21,11 @@ newGameButtonElem.addEventListener("click", function () {
     inputElem.focus();
     streakElem.innerHTML = "0";
 
+    document.getElementById('first-letter').style = "background-color: transparent";
+    document.getElementById('second-letter').style = "background-color: transparent";
+    document.getElementById('third-letter').style = "background-color: transparent";
+
+
     alertElem.style = "visibility: hidden";
 });
 
@@ -44,9 +49,15 @@ document.getElementById('form').addEventListener('submit', async function (event
     switch (isWordValid) {
         case 0:
             streakElem.innerHTML = game.streak;
-
             alertElem.style = "visibility: visible; color: green";
             alertElem.innerHTML = "A palavra é valida!"
+
+            inputElem.value = "";
+            
+            document.getElementById('first-letter').style = "background-color: transparent";
+            document.getElementById('second-letter').style = "background-color: transparent";
+            document.getElementById('third-letter').style = "background-color: transparent";
+
             break;
         case 1:
             alertElem.style = "visibility: visible";
@@ -64,3 +75,27 @@ document.getElementById('form').addEventListener('submit', async function (event
     }
 });
 
+inputElem.addEventListener('input', function () {
+    let isLetterFound = game.validatLetter(inputElem.value.toLowerCase());
+
+    if (isLetterFound[0]) {
+        document.getElementById('first-letter').style = "background-color: green";
+    }    
+    else{
+        document.getElementById('first-letter').style = "background-color: transparent";
+    }
+    if (isLetterFound[1]) {
+        document.getElementById('second-letter').style = "background-color: green";
+    }  
+    else{
+        document.getElementById('second-letter').style = "background-color: transparent";
+    }
+    if (isLetterFound[2]) {
+        document.getElementById('third-letter').style = "background-color: green";
+    }  
+    else{
+        document.getElementById('third-letter').style = "background-color: transparent";
+    }
+    
+}
+)
