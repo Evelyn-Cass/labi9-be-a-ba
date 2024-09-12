@@ -2,8 +2,9 @@ import { game } from "./game.js";
 
 const newGameButtonElem = document.getElementById("new-game");
 const inputElem = document.getElementById('word');
-const errorElem = document.getElementById('error');
+const alertElem = document.getElementById('alert');
 const streakElem = document.getElementById('streak');
+const boddyEle = document.querySelector('body');
 
 
 newGameButtonElem.addEventListener("click", function () {
@@ -20,7 +21,7 @@ newGameButtonElem.addEventListener("click", function () {
     inputElem.focus();
     streakElem.innerHTML = "0";
 
-    errorElem.style = "visibility: hidden";
+    alertElem.style = "visibility: hidden";
 });
 
 document.getElementById('form').addEventListener('submit', async function (event) {
@@ -31,12 +32,35 @@ document.getElementById('form').addEventListener('submit', async function (event
 
     const isWordValid = await game.validateWord(word.toLowerCase());
 
-    if (isWordValid) {
-        streakElem.innerHTML = game.streak;
-        errorElem.style = "visibility: hidden"
-    }
-    else {
-        errorElem.style = "visibility: visible";
-    }
+    // if (isWordValid) {
+    //     streakElem.innerHTML = game.streak;
+    //     alertElem.style = "visibility: hidden";
 
+    // }
+    // else {
+    //     alertElem.style = "visibility: visible";
+    // }
+
+    switch (isWordValid) {
+        case 0:
+            streakElem.innerHTML = game.streak;
+
+            alertElem.style = "visibility: visible; color: green";
+            alertElem.innerHTML = "A palavra é valida!"
+            break;
+        case 1:
+            alertElem.style = "visibility: visible";
+            alertElem.innerHTML = "A palavra não contém as três letras!";
+            break;
+        case 2:
+            alertElem.style = "visibility: visible";
+            alertElem.innerHTML = "A palavra já foi digitada!";
+            break;
+        case 3:
+            alertElem.style = "visibility: visible";
+            alertElem.innerHTML = "A palavra não existe no dicionário!";
+            break;
+
+    }
 });
+

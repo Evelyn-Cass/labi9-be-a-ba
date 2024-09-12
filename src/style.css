@@ -41,14 +41,11 @@ main {
 .contStreak{
 
     display: flex;
-    margin-left: auto;
+    
 }
 
 .streak{
-    position: fixed;
-    right: 0;
-    top: 0;
-    margin: 3rem 4rem;
+    margin: 1rem 4rem 3rem auto;
     font-size: 2em;
     border: 2px solid #ef4444;
     width: 80px;
@@ -88,9 +85,10 @@ main {
 .input{
     width: 25rem;
     font-size: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
-.error{
+.alert{
     color: #ef4444;
     visibility: hidden;
 }
@@ -111,9 +109,7 @@ main {
     background-color: #374157;
 }
 
-@media (max-width: 700px) {
-    .streak{
-        position: relative;
-        float: right;
-    }
+.footer p{
+    margin: 1rem auto;
+    width: 80%;
 }
